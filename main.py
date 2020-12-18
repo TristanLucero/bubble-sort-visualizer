@@ -42,7 +42,7 @@ def draw_line(xs, xf, ys, yf):
                           WIDTH,
                           HEIGHT], block_is_solid)
 
-    for row in range(0, xs-1):
+    for row in range(0, xs - 1):
         color = BLACK
         block_is_solid = 0
         pygame.draw.rect(screen,
@@ -56,7 +56,6 @@ def draw_line(xs, xf, ys, yf):
 def draw_wall(pos, state):
     col = pos[0] // (WIDTH + MARGIN)
     row = pos[1] // (HEIGHT + MARGIN)
-    print(col, row)
     if col < len(grid[0]) and row < len(grid):
         grid[row][col] = 1
 
@@ -72,7 +71,10 @@ def print_updated_array(values):
         draw_line(rowLen - values[i], rowLen, i, i)
 
 
-def print_buble_sort(values):
+def print_bubble_sort(values):
+    time.sleep(0.04)
+    print_updated_array(values)
+    pygame.display.update()
     for i in range(len(values)):
         for j in range(0, len(values) - i - 1):
             if values[j] > values[j + 1]:
@@ -80,7 +82,47 @@ def print_buble_sort(values):
                 time.sleep(0.02)
                 print_updated_array(values)
                 pygame.display.update()
-                print(values)
+    time.sleep(0.04)
+    print_updated_array(values)
+    pygame.display.update()
+
+
+def print_selection_sort(values):
+    time.sleep(0.04)
+    print_updated_array(values)
+    pygame.display.update()
+    for i in range(len(values)):
+        min_idx = i
+        for j in range(i + 1, len(values)):
+            if values[min_idx] > values[j]:
+                min_idx = j
+                time.sleep(0.04)
+                print_updated_array(values)
+                pygame.display.update()
+        values[i], values[min_idx] = values[min_idx], values[i]
+    time.sleep(0.04)
+    print_updated_array(values)
+    pygame.display.update()
+
+
+def print_insertion_sort(values):
+    time.sleep(0.005)
+    print_updated_array(values)
+    pygame.display.update()
+    for i in range(1, len(values)):
+        key = values[i]
+        j = i - 1
+        while j >= 0 and key < values[j]:
+            values[j + 1] = values[j]
+            j -= 1
+            time.sleep(0.005)
+            print_updated_array(values)
+            pygame.display.update()
+        values[j + 1] = key
+    time.sleep(0.005)
+    print_updated_array(values)
+    pygame.display.update()
+
 
 # Grid Array
 values = generate_random_array()
@@ -95,11 +137,23 @@ while 1:
             sys.exit()
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
+                values = generate_random_array()
+                print_updated_array(values)
+                arrSorted = False
+            elif event.key == pygame.K_1:
                 if not arrSorted:
-                    print_buble_sort(values)
+                    print_bubble_sort(values)
                     arrSorted = True
+            elif event.key == pygame.K_2:
+                if not arrSorted:
+                    print_selection_sort(values)
+                    arrSorted = True
+            elif event.key == pygame.K_3:
+                if not arrSorted:
+                    print_insertion_sort(values)
+                    arrSorted = True
+
     screen.fill(BLACK)
     print_updated_array(values)
     clock.tick(144)
     pygame.display.update()
-
