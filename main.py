@@ -53,13 +53,6 @@ def draw_line(xs, xf, ys, yf):
                           HEIGHT], block_is_solid)
 
 
-def draw_wall(pos, state):
-    col = pos[0] // (WIDTH + MARGIN)
-    row = pos[1] // (HEIGHT + MARGIN)
-    if col < len(grid[0]) and row < len(grid):
-        grid[row][col] = 1
-
-
 def generate_random_array():
     random.seed()
     values = random.randint(0, 60, 80)
@@ -79,7 +72,7 @@ def print_bubble_sort(values):
         for j in range(0, len(values) - i - 1):
             if values[j] > values[j + 1]:
                 values[j], values[j + 1] = values[j + 1], values[j]
-                time.sleep(0.02)
+                time.sleep(0.01)
                 print_updated_array(values)
                 pygame.display.update()
                 pygame.event.get()
@@ -97,7 +90,7 @@ def print_selection_sort(values):
         for j in range(i + 1, len(values)):
             if values[min_idx] > values[j]:
                 min_idx = j
-                time.sleep(0.04)
+                time.sleep(0.02)
                 print_updated_array(values)
                 pygame.display.update()
                 pygame.event.get()
@@ -117,7 +110,7 @@ def print_insertion_sort(values):
         while j >= 0 and key < values[j]:
             values[j + 1] = values[j]
             j -= 1
-            time.sleep(0.005)
+            time.sleep(0.003)
             print_updated_array(values)
             pygame.display.update()
             pygame.event.get()
