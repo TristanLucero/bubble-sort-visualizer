@@ -65,9 +65,6 @@ def print_updated_array(values):
 
 
 def print_bubble_sort(values):
-    time.sleep(0.04)
-    print_updated_array(values)
-    pygame.display.update()
     for i in range(len(values)):
         for j in range(0, len(values) - i - 1):
             if values[j] > values[j + 1]:
@@ -82,9 +79,6 @@ def print_bubble_sort(values):
 
 
 def print_selection_sort(values):
-    time.sleep(0.04)
-    print_updated_array(values)
-    pygame.display.update()
     for i in range(len(values)):
         min_idx = i
         for j in range(i + 1, len(values)):
@@ -101,9 +95,6 @@ def print_selection_sort(values):
 
 
 def print_insertion_sort(values):
-    time.sleep(0.005)
-    print_updated_array(values)
-    pygame.display.update()
     for i in range(1, len(values)):
         key = values[i]
         j = i - 1
